@@ -1,4 +1,4 @@
-# 🏔️ Eyehike Webcam Link Checker
+# 🏔️ Unscripted6160 & Eyehike Link Checker
 
 Automatically checks links on [eyehike.com/2016/](https://www.eyehike.com/2016/) and [unscripted6160.com] (https://www.unscripted6160.com) then generates a report showing which links are working, broken, or redirected.
 
