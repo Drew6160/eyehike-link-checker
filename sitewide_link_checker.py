@@ -25,7 +25,7 @@ SITES = [
     {
         "name":         "Eyehike",
         "base_url":     "https://www.eyehike.com",
-        "sitemap_url":  "https://www.eyehike.com/2016/wp-sitemap.xml",
+        "sitemap_url": "https://www.eyehike.com/2016/sitemap_index.xml",
         # Only crawl posts & pages — skip category/tag/author/project sitemaps
         "sitemap_filter": ["post-sitemap.xml", "page-sitemap.xml"],
         "skip_domains": {"www.eyehike.com", "eyehike.com"},
