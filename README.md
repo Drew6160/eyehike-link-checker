@@ -1,6 +1,6 @@
 # 🏔️ Eyehike Webcam Link Checker
 
-Automatically checks every webcam link on [eyehike.com/2016/webcams/](https://www.eyehike.com/2016/webcams/) and generates a report showing which links are working, broken, or redirected.
+Automatically checks links on [eyehike.com/2016/](https://www.eyehike.com/2016/) and [unscripted6160.com] (https://www.unscripted6160.com) then generates a report showing which links are working, broken, or redirected.
 
 Runs automatically on GitHub — no server or local machine needed.
 
@@ -8,7 +8,7 @@ Runs automatically on GitHub — no server or local machine needed.
 
 ## 📋 What it checks
 
-Every external link on the webcams page (~130+ links), categorized as:
+Every external link on the sites, categorized as:
 
 | Status | Meaning |
 |--------|---------|
@@ -35,9 +35,9 @@ You can also trigger a run **manually** at any time from the Actions tab.
 ## 📥 Getting your report
 
 1. Go to the **Actions** tab on this GitHub repo
-2. Click the most recent **Webcam Link Check** run
+2. Click the most recent **sitewide_link_checker** run
 3. Scroll down to **Artifacts**
-4. Download **webcam-link-report** and open the `.html` file in your browser
+4. Download **sitewide_link_checker report** and open the `.html` file in your browser
 
 The report has a live filter box — type "BROKEN" to instantly see only the dead links.
 
