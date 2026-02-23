@@ -1,13 +1,17 @@
-name: Webcam Link Check
+name: Sitewide Link Check
 
 "on":
+  # Quarterly: Jan, Apr, Jul, Oct 1st at 8:00 AM UTC
+  # Change to "0 8 1 * *" for monthly
   schedule:
     - cron: "0 8 1 1,4,7,10 *"
+
+  # Manual trigger — click "Run workflow" in the Actions tab anytime
   workflow_dispatch:
 
 jobs:
   check-links:
-    name: Check Webcam Links
+    name: Check All Site Links
     runs-on: ubuntu-latest
 
     steps:
@@ -22,25 +26,25 @@ jobs:
       - name: Install dependencies
         run: pip install requests beautifulsoup4
 
-      - name: Run link checker
-        run: python webcam_link_checker.py
+      - name: Run sitewide link checker
+        run: python sitewide_link_checker.py
 
       - name: Upload HTML report
         uses: actions/upload-artifact@v4
         with:
-          name: webcam-link-report-${{ github.run_id }}
-          path: "webcam_report_*.html"
+          name: sitewide-link-report-${{ github.run_id }}
+          path: "sitewide_report_*.html"
           retention-days: 90
 
       - name: Upload JSON data
         uses: actions/upload-artifact@v4
         with:
-          name: webcam-link-data-${{ github.run_id }}
-          path: "webcam_report_*.json"
+          name: sitewide-link-data-${{ github.run_id }}
+          path: "sitewide_report_*.json"
           retention-days: 90
 
-      - name: Show summary in log
+      - name: Write job summary
         run: |
-          echo "## Webcam Link Check Complete" >> $GITHUB_STEP_SUMMARY
-          echo "Report generated on $(date '+%B %d, %Y')" >> $GITHUB_STEP_SUMMARY
-          echo "Download the HTML report from the Artifacts section above." >> $GITHUB_STEP_SUMMARY
+          echo "## Sitewide Link Check Complete" >> $GITHUB_STEP_SUMMARY
+          echo "Run date: $(date '+%B %d, %Y')" >> $GITHUB_STEP_SUMMARY
+          echo "Download the HTML report from the Artifacts section below." >> $GITHUB_STEP_SUMMARY
