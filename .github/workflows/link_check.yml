@@ -1,1 +1,46 @@
+name: Webcam Link Check
 
+"on":
+  schedule:
+    - cron: "0 8 1 1,4,7,10 *"
+  workflow_dispatch:
+
+jobs:
+  check-links:
+    name: Check Webcam Links
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4
+
+      - name: Run link checker
+        run: python webcam_link_checker.py
+
+      - name: Upload HTML report
+        uses: actions/upload-artifact@v4
+        with:
+          name: webcam-link-report-${{ github.run_id }}
+          path: "webcam_report_*.html"
+          retention-days: 90
+
+      - name: Upload JSON data
+        uses: actions/upload-artifact@v4
+        with:
+          name: webcam-link-data-${{ github.run_id }}
+          path: "webcam_report_*.json"
+          retention-days: 90
+
+      - name: Show summary in log
+        run: |
+          echo "## Webcam Link Check Complete" >> $GITHUB_STEP_SUMMARY
+          echo "Report generated on $(date '+%B %d, %Y')" >> $GITHUB_STEP_SUMMARY
+          echo "Download the HTML report from the Artifacts section above." >> $GITHUB_STEP_SUMMARY
